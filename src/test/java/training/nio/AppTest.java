@@ -1,4 +1,4 @@
-package java.training.nio;
+package training.nio;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
