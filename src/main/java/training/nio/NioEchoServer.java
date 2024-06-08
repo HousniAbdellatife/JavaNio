@@ -18,12 +18,17 @@ public class NioEchoServer {
     private static Selector selector;
 
     public static void main(String[] args) throws IOException {
+        // open a nio server socket and bind to port
         initServerSocketChannel();
+        // open a selector
         initSelector();
+        // register a server socket to the selector
         registerServerSocketIntoSelector();
 
         while (true) {
+            // get selected channels to serve them
             Set<SelectionKey> selectedKeys = getSelectedKeys();
+            // serve selected channels
             checkSelectedKeys(selectedKeys);
         }
     }
@@ -57,10 +62,7 @@ public class NioEchoServer {
                     clientChannel.write(byteBuffer);
                     byteBuffer.clear();
                 }
-
-
             }
-
             selectedKeys.remove(selectedKey);
         }
     }
